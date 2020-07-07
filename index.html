@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEND API CALL</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</head>
+
+<body>
+    <main class="container">
+        <form>
+            <input class="button" @click="submitForm()" type="button" value="Send Api Call">
+        </form>
+    </main>
+
+    <script>
+        //input the API URL
+        const url = "https://httpbin.org/post";
+
+        //data to submited to the endpoint
+        let data = {};
+
+        let token = "";
+        
+        //headers to be contained in the request
+        let headers = {
+            "Contect-Type": "application/json",
+            "Authorization": "Basic ${token}" //place the authentication header
+        };
+
+        function submitForm() {
+            //send the api call
+            const res = axios.post(url, data, headers);
+            console.log(res.data);
+        }
+    </script>
+</body>
+
+</html>
