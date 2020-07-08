@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SEND API CALL</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -18,25 +17,35 @@
     </main>
 
     <script>
+        // const axios = require('axios');
         //input the API URL
-        const url = "https://httpbin.org/post";
+        const url = "https://dog.ceo/api/breeds/list/all";
 
         //data to submited to the endpoint
-        let data = {};
+        let data = {
+            firstName: 'Fred',
+            lastName: 'Flint'
+        };
 
         let token = "";
-        
+
         //headers to be contained in the request
         let headers = {
             "Contect-Type": "application/json",
-            "Authorization": "Basic ${token}" //place the authentication header
+            "Authorization": "Basic ${token}" //place the authentication header token
         };
 
-        function submitForm() {
-            //send the api call
-            const res = axios.post(url, data, headers);
-            console.log(res.data);
+        async function submitForm() {
+            try {
+                //send the api call
+                const res = await axios.get(url, data, headers);
+                console.log(res.data);
+            } catch (error) {
+                console.error(error);
+            }
         }
+
+        submitForm();
     </script>
 </body>
 
